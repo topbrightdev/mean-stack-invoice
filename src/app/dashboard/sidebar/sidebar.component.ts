@@ -12,14 +12,15 @@ export class SidebarComponent implements OnInit {
   private mediaMatcher: MediaQueryList=
   matchMedia(`(max-width : ${MAX_WIDTH_BREAKPOINT}px)`)
 
- links = [{
-   name: 'Invoices',
-   url: 'invoices'
- },
- {
-   name:'Clients',
-   url: 'clients'
- }
+ links = [
+       {
+       name: 'Invoices',
+       url: 'invoices'
+       },
+       {
+         name:'Clients',
+         url: 'clients'
+       }
 ]
 
   constructor() {
