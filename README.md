@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## For backend 
 
-Run `cd backend` & ` npm i ` then start the server using `npm start`.
+Run `cd backend` & ` npm i ` then start the server using `npm start`.Navigate to `http://localhost:5000/`. Use PostMan Tool to test APIs One by One
 
 ## Build
 
