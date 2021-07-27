@@ -1,51 +1,53 @@
+const status = require('http-status');
 const Invoice = require("../models/invoice.model");
+const Joi = require('@hapi/joi');
+
 
 function invoiceController() {
   return {
-    findAll(req, res, next) {
-      res.json({
-        msg: "Hello from controller",
-        status: 200,
-      });
+    async findAll(req, res, next) {
+
+      let result = await Invoice.find({})
+      
+      if(!result){
+        res.status(status.INTERNAL_SERVER_ERROR).send("Server error")
+      }
+      res.status(status.ACCEPTED).send(result)
     },
 
     async createInvoice(req, res, next) {
       const { item, qty, date, due, rate, tax } = req.body;
 
       try {
-        if (!item) {
-          return res.status(400).json({ err: " Item is required" });
-        }
-
-        if (!qty) {
-          return res.status(400).json({ err: "Qty is required" });
-        }
-
-        if (!date) {
-          return res.status(400).json({ err: "Date is required" });
-        }
-
-        if (!due) {
-          return res.status(400).json({ err: " Due-date is required" });
-        }
 
 
-       let invoice = new Invoice({
-            item,
-            qty,
-            date,
-            due,
-            rate,
-            tax
+        const schema = Joi.object().keys({
 
+          item: Joi.string().required(),
+          date: Joi.date().required(),
+          due: Joi.date().required(),
+          qty: Joi.number().integer()
+               .required(),
+          rate: Joi.number().optional(),
+          tax: Joi.number().optional(),
         })
+  
+         const { error , value }= Joi.validate(req.body , schema);
 
-      await invoice.save();
-      res.json(invoice);
+         if(error && error.details){
+           return res.status(status.BAD_REQUEST).json(error)
+         }
+
+     let newInvoice = await Invoice.create(value);
+      res.json({
+        msg:"success",
+        status:status.ACCEPTED,
+        result: newInvoice
+      });
 
       } catch (err) {
         console.log(err.message);
-        res.status(500).send("Server Error");
+        res.status(status.BAD_REQUEST).send("Server Error");
       }
     },
   };

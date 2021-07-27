@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
+
 const InvoiceSchema = new mongoose.Schema({
   item: { type: String, required: true },
 
