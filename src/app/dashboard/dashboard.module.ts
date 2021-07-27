@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InvoiceRoutingModule } from './invoice-routing.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MaterialModule } from '../angular-material/angular-material.module';
+import { InvoicesModule } from '../invoices/invoices.module';
 
 
 @NgModule({
@@ -18,8 +19,9 @@ import { MaterialModule } from '../angular-material/angular-material.module';
   ],
   imports: [
     CommonModule,
-    InvoiceRoutingModule,
+    DashboardRoutingModule,
     MaterialModule,
+    InvoicesModule
     
     
   ],
@@ -31,4 +33,4 @@ import { MaterialModule } from '../angular-material/angular-material.module';
   ]
   
 })
-export class InvoiceModule { }
+export class DashboardModule { }
