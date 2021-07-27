@@ -53,3 +53,35 @@
                         "tax": 123,
                         "__v": 0
                     }
+
+
+
+
+4. API for updateInvoice(PUt) , kindly use POSTMAN to
+
+        - visit : http://localhost:5000/api/invoice/60ffe8fbf782e914109dc403
+        - body :
+              {
+                  "item" : "phones123",
+                  "qty" :232,
+                  "date":"05-03-2034",
+                  "due":"05-02-2039",
+                  "rate" :45,
+                  "tax":123
+            }
+
+        - response : 
+                   {
+                        "msg": "successfully updated",
+                        "status": 202,
+                        "result": {
+                              "_id": "60ffe8fbf782e914109dc403",
+                              "item": "phones123",
+                              "qty": 232,
+                              "date": "2034-05-02T18:30:00.000Z",
+                              "due": "2039-05-01T18:30:00.000Z",
+                              "rate": 45,
+                              "tax": 123,
+                              "__v": 0
+                          }
+                        }

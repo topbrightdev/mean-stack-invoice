@@ -1,6 +1,7 @@
 const status = require('http-status');
 const Invoice = require("../models/invoice.model");
 const Joi = require('@hapi/joi');
+const { updateOne } = require('../models/invoice.model');
 
 
 function invoiceController() {
@@ -32,6 +33,7 @@ function invoiceController() {
         result: `This item is deleted with Id = ${result._id}`
       })
     },
+
 
 
     async findOne(req, res, next) {
@@ -78,6 +80,44 @@ function invoiceController() {
         msg:"success",
         status:status.ACCEPTED,
         result: newInvoice
+      });
+
+      } catch (err) {
+        console.log(err.message);
+        res.status(status.BAD_REQUEST).send("Server Error");
+      }
+    },
+
+
+    async updateInvoice(req, res, next) {
+      const { item, qty, date, due, rate, tax } = req.body;
+
+      try {
+
+
+        const schema = Joi.object().keys({
+
+          item: Joi.string().optional(),
+          date: Joi.date().optional(),
+          due: Joi.date().optional(),
+          qty: Joi.number().integer()
+               .optional(),
+          rate: Joi.number().optional(),
+          tax: Joi.number().optional(),
+        })
+  
+         const { error , value }= Joi.validate(req.body , schema);
+
+         if(error && error.details){
+           return res.status(status.BAD_REQUEST).json(error)
+         }
+        let {id } = req.params
+
+       let updatedInvoice = await Invoice.findByIdAndUpdate({ _id:id } ,value, {new : true});
+      res.json({
+        msg:"successfully updated",
+        status:status.ACCEPTED,
+        result: updatedInvoice
       });
 
       } catch (err) {
