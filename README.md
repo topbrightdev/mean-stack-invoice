@@ -1,14 +1,16 @@
-# InvoiceBuilder
+# InvoiceBuilder Using MEAN stack
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.13.
 
-## Development server
+## This is Invoice builder using Angular , Angular-Material , Nodejs , ExpressJs & MongoDB
+
+## For Running Frontend
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## For Running Backend 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `cd backend` & ` npm i ` then start the server using `npm start`.Navigate to `http://localhost:5000/`. Use PostMan Tool to test APIs One by One
 
 ## Build
 
