@@ -37,3 +37,19 @@
        if you use third party middleware like morgan , you will see the following output as well as the following
 
             Output ::1 - - [27/Jul/2021:07:21:02 +0000] "POST /api/invoice HTTP/1.1" 200 153 "-" "PostmanRuntime/7.26.8"
+
+ 3.API for FindOneInvoice(GET) , kindly use POSTMAN to
+
+        - visit : http://localhost:5000/api/invoice/60ffae210b504c5c16e4a643
+      
+        - response : 
+                   {
+                        "_id": "60ffae210b504c5c16e4a643",
+                        "item": "clothes",
+                        "qty": 2,
+                        "date": "2018-05-02T18:30:00.000Z",
+                        "due": "2019-05-01T18:30:00.000Z",
+                        "rate": 45,
+                        "tax": 123,
+                        "__v": 0
+                    }

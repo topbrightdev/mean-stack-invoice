@@ -6,7 +6,9 @@ const invoiceController =require('../controllers/invoive.Controller')
 
 
 router.get('/invoice' , invoiceController().findAll)
+router.get('/invoice/:id' , invoiceController().findOne);
+router.post('/invoice' , invoiceController().createInvoice);
+router.delete('/invoice/:id' , invoiceController().deleteOne)
 
-router.post('/invoice' , invoiceController().createInvoice)
 
 module.exports = router;

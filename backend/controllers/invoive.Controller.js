@@ -4,7 +4,9 @@ const Joi = require('@hapi/joi');
 
 
 function invoiceController() {
+
   return {
+
     async findAll(req, res, next) {
 
       let result = await Invoice.find({})
@@ -13,6 +15,39 @@ function invoiceController() {
         res.status(status.INTERNAL_SERVER_ERROR).send("Server error")
       }
       res.status(status.ACCEPTED).send(result)
+    },
+
+
+    async deleteOne(req, res, next) {
+      
+      let {id } = req.params
+
+      let result = await Invoice.findByIdAndDelete(id)
+      
+      if(!result){
+        res.status(status.INTERNAL_SERVER_ERROR).send("Not Found")
+      }
+      res.status(status.ACCEPTED).json({
+        msg:"Deleted successfully",
+        result: `This item is deleted with Id = ${result._id}`
+      })
+    },
+
+
+    async findOne(req, res, next) {
+
+      let {id } = req.params
+
+      let results = await Invoice.findById(id)
+
+      if(!results){
+
+        res.status(status.NOT_FOUND).send("Not Found")
+      }       
+
+      //return res.json(results)
+
+       res.status(status.ACCEPTED).send(results)
     },
 
     async createInvoice(req, res, next) {
@@ -51,6 +86,9 @@ function invoiceController() {
       }
     },
   };
+
+
+  
 }
 
 module.exports = invoiceController;
