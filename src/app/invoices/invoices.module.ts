@@ -4,6 +4,8 @@ import { InvoiceListingComponent } from './components/invoice-listing/invoice-li
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../angular-material/angular-material.module';
 import { ClientsComponent } from './components/clients/clients.component';
+import { HttpClientModule } from '@angular/common/http';
+import { InvoiceService } from './invoice.service';
 
 
 
@@ -15,11 +17,13 @@ import { ClientsComponent } from './components/clients/clients.component';
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   exports:[
     InvoiceListingComponent,
     ClientsComponent
-  ]
+  ],
+  providers:[InvoiceService]
 })
 export class InvoicesModule { }
