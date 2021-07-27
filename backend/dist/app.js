@@ -1,18 +1,18 @@
-const express= require('express');
-const connectDB = require('./config/db');
-const app = express();
+'use strict';
 
-
+var express = require('express');
+var connectDB = require('../config/db');
+var app = express();
 
 // Connect Database
 connectDB();
 
 // Intialize Middleware
-app.use(express.json({extended : false}));
+app.use(express.json({ extended: false }));
 
-app.get('/',(req , res)=>{
+app.get('/', function (req, res) {
     res.send('API Running');
-})
+});
 
 // Define Routes
 // app.use('/api/users', require('./routes/api/users'))
@@ -22,8 +22,9 @@ app.get('/',(req , res)=>{
 
 
 //Defing Port 
-const PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 5000;
 
-app.listen(PORT ,()=>{
-    console.log(`server started on port ${PORT}`)
+app.listen(PORT, function () {
+    console.log('server started on port ' + PORT);
 });
+//# sourceMappingURL=app.js.map

@@ -4,7 +4,9 @@
   "description": "This is backend build on Nodejs , ExpressJs & Nodejs",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon src/app.js --exec babel-node --presets env",
+    "build":"babel src -d dist --source-maps",
+    "serve": "node dist/app.js"
   },
   "keywords": [
     "Nodejs",
@@ -24,6 +26,8 @@
     "noty": "^3.2.0-beta-deprecated"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "nodemon": "^2.0.12"
   }
 }
