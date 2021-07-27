@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon src/app.js --exec babel-node --presets env",
-    "build":"babel src -d dist --source-maps",
+    "build": "babel src -d dist --source-maps",
     "serve": "node dist/app.js"
   },
   "keywords": [
@@ -20,14 +20,19 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "config": "^3.3.6",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "mongoose": "^5.13.3",
+    "mongoose-unique-validator": "^2.0.3",
     "noty": "^3.2.0-beta-deprecated"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "eslint": "^7.31.0",
     "nodemon": "^2.0.12"
   }
 }

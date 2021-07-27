@@ -3,11 +3,19 @@
 var express = require('express');
 var connectDB = require('../config/db');
 var app = express();
+var bodyParser = require('body-parser');
+var cors = require('cors');
 
 // Connect Database
 connectDB();
 
 // Intialize Middleware
+app.use('/', function (req, res, next) {
+    console.log('Time: %d', Date.now());
+    next();
+});
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json({ extended: false }));
 
 app.get('/', function (req, res) {
@@ -15,7 +23,7 @@ app.get('/', function (req, res) {
 });
 
 // Define Routes
-// app.use('/api/users', require('./routes/api/users'))
+app.use('/api', require('.././routes/invoice'));
 // app.use('/api/auth', require('./routes/api/auth'))
 // app.use('/api/profile', require('./routes/api/profile'))
 // app.use('/api/posts', require('./routes/api/posts'))
