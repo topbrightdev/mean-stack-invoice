@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { InvoiceService } from '../../invoice.service'
+import { Invoice } from '../../models/invoice';
 
 
 @Component({
@@ -9,7 +11,11 @@ import { InvoiceService } from '../../invoice.service'
 })
 export class InvoiceListingComponent implements OnInit {
 
-  constructor(private invoiceService:InvoiceService) { }
+  displayedColumns: string[] = ['item', 'date', 'due', 'qty' ,'rate' ,'tax','action'];
+  dataSource : Invoice[] =[];
+
+  constructor(private invoiceService:InvoiceService ,
+     private router:Router) { }
 
   ngOnInit(): void {
 
@@ -19,8 +25,16 @@ export class InvoiceListingComponent implements OnInit {
 
   onList(){
     this.invoiceService.getInvoice().subscribe(data=>{
+      
+      this.dataSource=data;
       console.log(data)
     })
+  }
+
+  saveBtnHandler(){
+
+    this.router.navigate(['dashboard' ,'invoices' ,'new'])
+
   }
 
 }

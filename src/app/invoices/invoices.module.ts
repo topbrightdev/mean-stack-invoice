@@ -6,23 +6,28 @@ import { MaterialModule } from '../angular-material/angular-material.module';
 import { ClientsComponent } from './components/clients/clients.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InvoiceService } from './invoice.service';
+import { InvoiceFormComponent } from './components/invoice-form/invoice-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
     InvoiceListingComponent,
-    ClientsComponent
+    ClientsComponent,
+    InvoiceFormComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   exports:[
     InvoiceListingComponent,
-    ClientsComponent
+    ClientsComponent,
+    InvoiceFormComponent
   ],
   providers:[InvoiceService]
 })

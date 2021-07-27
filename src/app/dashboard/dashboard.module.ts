@@ -13,7 +13,6 @@ import { InvoicesModule } from '../invoices/invoices.module';
 @NgModule({
   declarations: [
     InvoiceComponent,
-    MainContentComponent,
     SidebarComponent,
     ToolbarComponent,
   ],
@@ -27,7 +26,6 @@ import { InvoicesModule } from '../invoices/invoices.module';
   ],
   exports: [
     InvoiceComponent,
-    MainContentComponent,
     SidebarComponent,
     ToolbarComponent,
   ]
