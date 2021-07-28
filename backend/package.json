@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^15.0.3",
+    "@types/lodash": "^4.14.171",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "config": "^3.3.6",
@@ -26,6 +27,7 @@
     "express-flash": "0.0.2",
     "http-status": "^1.5.0",
     "joi": "^17.4.1",
+    "lodash": "^4.17.21",
     "mongoose": "^5.13.3",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",

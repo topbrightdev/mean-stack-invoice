@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup , FormControl , FormBuilder ,Validators} from '@angular/forms';
 import { InvoiceService } from '../../invoice.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Invoice } from '../../models/invoice';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class InvoiceFormComponent implements OnInit {
 
   invoiceForm:FormGroup;
+  private invoice:Invoice[]
 
 
   constructor(
@@ -20,12 +22,14 @@ export class InvoiceFormComponent implements OnInit {
        private invoiceService : InvoiceService ,
        private _snackBar: MatSnackBar,
        private router:Router,
+       private route:ActivatedRoute
 
        ) { }
 
   ngOnInit(): void {
 
     this.createForm();
+    this.setInvoiceToForm();
   }
 
   createForm(){
@@ -41,8 +45,11 @@ export class InvoiceFormComponent implements OnInit {
       })
     
      }
+     
 
-     onSubmit(){
+      onSubmit(){
+
+        
        this.invoiceService.createInvoice(this.invoiceForm.value).subscribe(data=>{
         this._snackBar.open('Invoice Created' , 'Success' , {
             duration:2000
@@ -54,6 +61,7 @@ export class InvoiceFormComponent implements OnInit {
        },
        err => this.errorHandler(err , 'Failed to create invoice')
        )
+      
      }
 
      private errorHandler(error ,message ){
@@ -61,6 +69,34 @@ export class InvoiceFormComponent implements OnInit {
        this._snackBar.open(message , 'Error' , {
          duration:2000
        })
+     }
+
+     onCancel() {
+
+      this.router.navigate(['dashboard' ,'invoices'])
+
+     }
+
+      setInvoiceToForm(){
+
+        this.route.params.subscribe(params => {
+
+          let id = params['id'];
+
+          if(!id){
+            return;
+          }
+          this.invoiceService.getInvoiceId(id)
+          .subscribe(invoice => {
+            debugger
+             this.invoice = invoice;
+             this.invoiceForm.patchValue(this.invoice);
+            
+
+          }, err => this.errorHandler(err , 'Failed to get invoice')
+          )
+        })
+       
      }
    
   }

@@ -23,9 +23,28 @@ export class InvoiceService {
 
   }
 
+
+  getInvoiceId(id:string):Observable<Invoice[]>{
+    
+    return this.http.get<Invoice[]>(`${BASE_URL}/invoice/${id}`);
+
+  }
+
   createInvoice(body:Invoice):Observable<Invoice[]>{
     
     return this.http.post<Invoice[]>(`${BASE_URL}/invoice` , body);
+
+  }
+
+  deleteInvoice(id:string):Observable<Invoice[]>{
+    
+    return this.http.delete<Invoice[]>(`${BASE_URL}/invoice/${id}`);
+
+  }
+
+  updateInvoice(id:string ,body:Invoice):Observable<Invoice[]>{
+    
+    return this.http.put<Invoice[]>(`${BASE_URL}/invoice/${id}` ,body);
 
   }
 }

@@ -1,6 +1,6 @@
 export class Invoice {
     
-    _id?:number
+    _id?:string;
     item: string;
     qty: number;
     date: Date;
