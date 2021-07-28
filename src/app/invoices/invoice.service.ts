@@ -22,4 +22,10 @@ export class InvoiceService {
     return this.http.get<Invoice[]>(`${BASE_URL}/invoice`);
 
   }
+
+  createInvoice(body:Invoice):Observable<Invoice[]>{
+    
+    return this.http.post<Invoice[]>(`${BASE_URL}/invoice` , body);
+
+  }
 }
