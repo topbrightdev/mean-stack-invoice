@@ -20,6 +20,10 @@ export class SidebarComponent implements OnInit {
        {
          name:'Clients',
          url: 'clients'
+       },
+       {
+         name: 'Register',
+         url:'register'
        }
 ]
 

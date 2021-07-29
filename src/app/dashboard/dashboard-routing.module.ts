@@ -6,8 +6,12 @@ import { InvoiceListingComponent } from '../invoices/components/invoice-listing/
 import { InvoiceComponent } from './invoice/invoice.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { Invoice } from '../invoices/models/invoice';
+import { RegisterComponent } from '../invoices/auth/register/register.component';
+import { LoginComponent } from '../invoices/auth/login/login.component';
 
 const routes: Routes = [
+
+  
   {
     path:'',
     component:InvoiceComponent,
@@ -29,9 +33,19 @@ const routes: Routes = [
         component:InvoiceFormComponent
       },
       {
+        path:"register",
+        component:RegisterComponent
+      },
+      {
+        path:'login',
+        component:LoginComponent
+      },
+      {
         path:'**',
         redirectTo:'invoices'
       }
+
+      
 
     ]
   }

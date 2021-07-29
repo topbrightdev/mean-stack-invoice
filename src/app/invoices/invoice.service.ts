@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 //import { Observable } from 'rxjs/internal/Observable';
 //import {Observable } from 'rxjs/Observable';
 import { Invoice } from './models/invoice'
-
+import { Register } from './models/register';
 
 const BASE_URL ='http://localhost:5000/api'
 
@@ -33,6 +33,12 @@ export class InvoiceService {
   createInvoice(body:Invoice):Observable<Invoice[]>{
     
     return this.http.post<Invoice[]>(`${BASE_URL}/invoice` , body);
+
+  }
+
+  createUser(body:Register):Observable<Register[]>{
+    
+    return this.http.post<Register[]>(`${BASE_URL}/register` , body);
 
   }
 

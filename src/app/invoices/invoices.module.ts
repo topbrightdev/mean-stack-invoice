@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InvoiceService } from './invoice.service';
 import { InvoiceFormComponent } from './components/invoice-form/invoice-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 
@@ -15,7 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     InvoiceListingComponent,
     ClientsComponent,
-    InvoiceFormComponent
+    InvoiceFormComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports:[
     InvoiceListingComponent,
     ClientsComponent,
-    InvoiceFormComponent
+    InvoiceFormComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   providers:[InvoiceService]
 })
