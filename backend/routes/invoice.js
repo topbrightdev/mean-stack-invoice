@@ -13,7 +13,7 @@ router.delete('/invoice/:id' , invoiceController().deleteOne)
 router.put('/invoice/:id' , invoiceController().updateInvoice)
 // router.post('/register' , authController().registerUser)
 router.post('/register' , registerController().regUser)
-router.post('/login' ,auth, registerController().loginUser)
+router.post('/login' , registerController().loginUser)
 
 
 

@@ -15,6 +15,9 @@ import { Login } from '../../models/login';
 })
 export class LoginComponent implements OnInit {
 
+  email:string;
+  password:string
+
   loginForm:FormGroup;
   private invoice:Invoice[]
 
@@ -31,7 +34,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     this.createForm();
-    this.setInvoiceToForm();
   }
 
   createForm(){
@@ -39,8 +41,8 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({ 
     
          
-          username : ['' , Validators.required],
-          password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+          email : ['' , Validators.required],
+          password: ['', Validators.required]
           
       })
     
@@ -84,36 +86,32 @@ export class LoginComponent implements OnInit {
 
      }
 
-      setInvoiceToForm(){
+     onLoginSubmit(){
 
-        this.route.params.subscribe(params => {
+      const user = {
+        email: this.email,
+        password: this.password
+      }
+      console.log(user);
+      this.invoiceService.loginUser(user).subscribe(data => {
+        if(data['success']) {
+         this.invoiceService.storeUserData(data['token'], data['user']);
+          // this.flashMessage.show('You are now logged in', {cssClass: 'alert-success', timeout: 5000});
+          this._snackBar.open('User Login successfully' , 'Success' , {
+            duration:2000
+          })
+          this.router.navigate(['dashboard' ,'invoices']);
+        } else {
+          // this.flashMessage.show(data['msg'], {cssClass: 'alert-danger', timeout: 5000});
+          this.router.navigate(['login']);
+        }
+    },  err => this.errorHandler(err , 'Failed to Login')
+    );
+  
+    }
+  
 
-          let id = params['id'];
-
-          if(!id){
-            return;
-          }
-          this.invoiceService.getInvoiceId(id)
-          .subscribe(invoice => {
-            debugger
-             this.invoice = invoice;
-             this.loginForm.patchValue(this.invoice);
-            
-
-          }, err => this.errorHandler(err , 'Failed to get invoice')
-          )
-        })
-       
-     }
-
-     onLogin(){
-       
-       console.log(this.loginForm.value)
-       this._snackBar.open('You have login successfully' , 'Success' , {
-        duration:2000
-      })
-
-     }
+     
    
   }
 

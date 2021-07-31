@@ -1,13 +1,13 @@
 <mat-card class="mat-elevation-z10">
     <h3 >LogIn Here</h3>
     <!-- {{ this.invoiceForm.value | json}} -->
-    <form class="form-container" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+    <form class="form-container" [formGroup]="loginForm" novalidate (ngSubmit)="onLoginSubmit()">
 
        
         
         <mat-form-field color="accent">
-            <input matInput placeholder="Username" formControlName="username"> 
-            <mat-error *ngIf="loginForm.controls.username.invalid && loginForm.controls.username.touched">Username is required</mat-error>   
+            <input matInput placeholder="email" formControlName="email" type="text"> 
+            <mat-error *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">Email is required</mat-error>   
         </mat-form-field>
 
         <mat-form-field color="accent">

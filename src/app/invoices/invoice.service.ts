@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient ,HttpHeaders ,HttpParams}   from '@angular/common/http'
+
 //import { Observable } from 'rxjs/internal/Observable';
 //import {Observable } from 'rxjs/Observable';
 import { Invoice } from './models/invoice'
@@ -13,6 +15,11 @@ const BASE_URL ='http://localhost:5000/api'
   providedIn: 'root'
 })
 export class InvoiceService {
+
+  authToken: any;
+  user: any;
+  results: any;
+
  
   constructor(private http:HttpClient) { }
 
@@ -32,21 +39,32 @@ export class InvoiceService {
   }
 
   createInvoice(body:Invoice):Observable<Invoice[]>{
-    
+     
     return this.http.post<Invoice[]>(`${BASE_URL}/invoice` , body);
 
   }
 
-  createUser(body:Login):Observable<Login[]>{
+  createUser(user:Register):Observable<Register[]>{
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json'); 
     
-    return this.http.post<Login[]>(`${BASE_URL}/login` , body);
+    return this.http.post<Register[]>(`${BASE_URL}/register` , user ,{headers: headers});
 
   }
 
-  loginUser(body:Register):Observable<Register[]>{
-    
-    return this.http.post<Register[]>(`${BASE_URL}/register` , body);
+  loginUser(user:Login):Observable<Login[]>{
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<Login[]>(`${BASE_URL}/login` , user ,{headers: headers});
 
+  }
+
+  storeUserData(token, user:Login) {
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
   }
 
   deleteInvoice(id:string):Observable<Invoice[]>{
