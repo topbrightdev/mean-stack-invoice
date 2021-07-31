@@ -11,8 +11,12 @@ const RegisterSchema = new mongoose.Schema({
   username: { type: String, required: true },
 
   password: { type: String, required: true },
+
+//   avatar :{
+//     type : String
+// },
   
-  password_confirmation: { type: String, required: true }
+   password_confirmation: { type: String }
 
 });
 

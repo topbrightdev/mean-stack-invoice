@@ -47,11 +47,18 @@ export class LoginComponent implements OnInit {
      }
      
 
+
+     onReset(){
+
+      this.loginForm.reset();
+
+     }
+
       onSubmit(){
 
         
-       this.invoiceService.createInvoice(this.loginForm.value).subscribe(data=>{
-        this._snackBar.open('Invoice Created' , 'Success' , {
+       this.invoiceService.loginUser(this.loginForm.value).subscribe(data=>{
+        this._snackBar.open('User Login successfully' , 'Success' , {
             duration:2000
           })
         
@@ -59,7 +66,7 @@ export class LoginComponent implements OnInit {
          this.router.navigate(['dashboard' ,'invoices'])
          console.log(data);
        },
-       err => this.errorHandler(err , 'Failed to create invoice')
+       err => this.errorHandler(err , 'Failed to Login')
        )
       
      }

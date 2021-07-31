@@ -53,12 +53,12 @@ export class RegisterComponent implements OnInit {
 
         
        this.invoiceService.createUser(this.registerForm.value).subscribe(data=>{
-        this._snackBar.open('User Created' , 'Success' , {
+        this._snackBar.open('User Registered successfully' , 'Success' , {
             duration:2000
           })
         
          this.registerForm.reset();
-         this.router.navigate(['dashboard' ,'invoices'])
+         this.router.navigate(['dashboard' ,'login'])
          console.log(data);
        },
        err => this.errorHandler(err , 'Failed to create User')
@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
             debugger
              this.invoice = invoice;
              this.registerForm.patchValue(this.invoice);
-            
+
 
           }, err => this.errorHandler(err , 'Failed to get invoice')
           )

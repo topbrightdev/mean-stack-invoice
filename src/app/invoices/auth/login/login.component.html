@@ -1,7 +1,7 @@
 <mat-card class="mat-elevation-z10">
     <h3 >LogIn Here</h3>
     <!-- {{ this.invoiceForm.value | json}} -->
-    <form class="form-container" [formGroup]="loginForm" novalidate (ngSubmit)="onLogin()">
+    <form class="form-container" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
 
        
         
@@ -18,7 +18,7 @@
 
         <div>
             <button mat-raised-button  type="submit" color="accent">Login</button>
-            <button mat-raised-button type="reset" (click)="onCancel()">SignUp</button>
+            <button mat-raised-button type="reset" (click)="onReset()">reset</button>
 
         </div>
 

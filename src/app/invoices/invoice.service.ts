@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 //import { Observable } from 'rxjs/internal/Observable';
 //import {Observable } from 'rxjs/Observable';
 import { Invoice } from './models/invoice'
+import { Login } from './models/login';
 import { Register } from './models/register';
 
 const BASE_URL ='http://localhost:5000/api'
@@ -36,7 +37,13 @@ export class InvoiceService {
 
   }
 
-  createUser(body:Register):Observable<Register[]>{
+  createUser(body:Login):Observable<Login[]>{
+    
+    return this.http.post<Login[]>(`${BASE_URL}/login` , body);
+
+  }
+
+  loginUser(body:Register):Observable<Register[]>{
     
     return this.http.post<Register[]>(`${BASE_URL}/register` , body);
 

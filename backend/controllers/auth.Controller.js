@@ -2,7 +2,6 @@ const status = require('http-status');
 const Invoice = require("../models/invoice.model");
 const Joi = require('@hapi/joi');
 const Register = require('../models/register.model');
-const bcrypt = require("bcrypt");
 
 
 function authController() {
